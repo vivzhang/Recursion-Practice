@@ -1,4 +1,3 @@
-// From ssitu001
 // Solve all of the following prompts using recursion.
 
 // 1. Calculate the factorial of a number.  The factorial of a non-negative integer n,
@@ -6,48 +5,59 @@
 // Example:  5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5);  // 120
 var factorial = function(n) {
-	if (n === 1 || n === 0) {
-		return 1;
-	}
-	if (n < 0) {
-		return null;
-	}
-	return n * factorial(n-1);
+  return n < 0 ? null : n < 2 ? 1 : n * factorial(n-1);
 };
 
 // 2. Compute the sum of an array of integers.
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
-	if (array.length === 0) {
-		return 0;
-	} else {
-		return array[0] + sum(array.slice(1));
-	}
+  return !array.length ? 0 : array[0] + sum(array.slice(1));
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-
-}
+  if(!array.length) {
+    return 0;
+  } else if (Array.isArray(array[0])) {
+      return arraySum(array[0]) + arraySum(array.slice(1));
+  } else {
+      return array[0] + arraySum(array.slice(1));
+  }
+};
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-	// if (n % 2 === 0) {
-	// 	return true;
-	// }
-	// return false;
+  n = Math.abs(n);
+  return n === 1 ? false : n === 0 ? true : isEven(n-2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if(n===0) {
+    return 0;
+  } else if (n < 0) {
+      return n+1 + sumBelow(n+1);
+  } else {
+      return n-1 + sumBelow(n-1);
+  }
 };
 
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  var ranger = [];
+  if( x===y || y-x === 1 || x-y === 1) {
+    return ranger;
+  } else if (y > x) {
+      ranger.push(x+1);
+      return ranger.concat(range(x+1, y))
+  } else {
+      ranger.push(x-1);
+      return ranger.concat(range(x-1, y))
+  }
 };
 
 // 7. Compute the exponent of a number.
@@ -66,11 +76,29 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that accepts a string a reverses it.
-var reverse = function(string) {
+var reverse = function(string, reversed) {
+  reversed = reversed || "";
+  if(!string.length) {
+    return reversed;
+  } else {
+      reversed += string.slice(-1); 
+      return reverse(string.slice(0, -1), reversed);
+  }
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase().split(" ").join("");
+  
+  if(string.length === 0 || string.length === 1) {
+    return true;
+  }
+  
+  if(string.charAt(0) !== string.charAt(string.length-1)) {
+    return false;
+  }
+  
+  return palindrome(string.slice(1, -1))
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -105,32 +133,84 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  var str1firstChar = str1.charAt(0);
+  var str2firstChar = str2.charAt(0);
+  if(str1.length === 0 && str2.length === 0) {
+    return true;
+  }
+  if(str1firstChar !== str2firstChar) {
+    return false;
+  }
+  if(str1firstChar === str2firstChar) {
+    return compareStr(str1.slice(1), str2.slice(1));
+  }
+  
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  var ourArray = [];
+  if (!str.length) {
+    return ourArray;
+  } else {
+      ourArray.push(str.slice(0,1));
+      return ourArray.concat(createArray(str.slice(1)));
+  }
 };
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  var blah = [];
+  if(!array.length) {
+    return blah;
+  } else {
+      blah.push(array.splice(-1)[0]);
+      return blah.concat(reverseArr(array));
+  }
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  var list = [];
+  if(!length) {
+    return list;
+  } else {
+      list.push(value);
+      return list.concat(buildList(value, length-1));
+  }
 };
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  var count =  0;
+  if(!array.length) {
+    return count;
+  } else {
+      var spliced = array.splice(0,1)[0];
+      if(spliced === value) {
+        ++count;
+      }
+      count += countOccurrence(array, value);
+  }
+  return count;
 };
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  var newArray = array.slice(0);
+  var mapped = [];
+  if(!newArray.length) {
+    return mapped;
+  } else {
+      mapped.push(callback(newArray.splice(0,1)[0]));
+      return mapped.concat(rMap(newArray, callback));
+  }
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -138,6 +218,16 @@ var rMap = function(array, callback) {
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+  var count = 0;
+  for(var keys in obj) {
+    if(keys === key) {
+      ++count;
+    }
+    if (typeof obj[keys] === "object"){
+      count += countKeysInObj(obj[keys], key);
+    }
+  }
+  return count;
 };
 
 // 22. Write a function that counts the number of times a value occurs in an object.
@@ -145,6 +235,16 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(testobj, 'r') // 2
 // countValuesInObj(testobj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  var count = 0;
+  for(var keys in obj) {
+    if(obj[keys] === value) {
+      ++count;
+    }
+    if (typeof obj[keys] === "object"){
+      count += countValuesInObj(obj[keys], value);
+    }
+  }
+  return count;
 };
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
