@@ -4,3 +4,15 @@
 // array11([1, 2, 11], 0) → 1
 // array11([11, 11], 0) → 2
 // array11([1, 2, 3, 4], 0) → 0
+
+function array11(array, index) {
+	if (index + 1 === array.length) {
+		return result;
+	} else {
+		if (array[index] === 11) {
+			result += array11(array, index + 1);
+		}
+	}
+}
+
+
