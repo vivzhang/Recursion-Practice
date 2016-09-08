@@ -54,6 +54,15 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	// base case: if n is 1, return result. if n is -1, return result
+	// recursive case: if n is positive, n - 1 + result of calling sumBelow(n - 1). if n is negative, n + 1 + result of calling sumBelow (n + 1)
+	if (n === 1 || n === -1 || n === 0) {
+		return 0;
+	} else if (n > 0) {
+		return (n - 1) + sumBelow(n - 1); 
+	} else {
+		return (n + 1) + sumBelow(n + 1);
+	}
 };
 
 // 6. Get the integers in range (x, y).
