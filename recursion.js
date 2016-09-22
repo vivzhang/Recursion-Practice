@@ -13,7 +13,7 @@ var factorial = function(n) {
 	} else if (n < 0) {
 		return null;
 	} else {
-		return n * factorial(n-1); 
+		return n * factorial(n-1);
 	}
 };
 
@@ -21,7 +21,7 @@ var factorial = function(n) {
 // Example:  sum([1, 2, 3, 4, 5, 6]);  // 21
 var sum = function(array) {
 	// base case: when array === [], return 0
-	// recursive case: array[0] + sum(array.slice(1)); 
+	// recursive case: array[0] + sum(array.slice(1));
 	if (!array.length) {
 		return 0;
 	} else {
@@ -46,7 +46,7 @@ var isEven = function(n) {
 	} else if (n > 0) {
 		return isEven(n - 2);
 	} else {
-		return isEven(n + 2); 
+		return isEven(n + 2);
 	}
 };
 
@@ -59,7 +59,7 @@ var sumBelow = function(n) {
 	if (n === 1 || n === -1 || n === 0) {
 		return 0;
 	} else if (n > 0) {
-		return (n - 1) + sumBelow(n - 1); 
+		return (n - 1) + sumBelow(n - 1);
 	} else {
 		return (n + 1) + sumBelow(n + 1);
 	}
@@ -68,7 +68,31 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+	// i: 2 #s
+	// o: an array contains #s between those 2 #s
+	// c: has to be integers
+	// e: no
+
+	// create an empty results array
+	var results = [];
+	var search = function(smNum, lgNum) {
+	// check if x + 1 is less than y
+		if ((smNum + 1) < lgNum) {
+		// if so, push to results
+			results.push(smNum + 1);
+		} else {
+			return;
+		}
+	// run range func again
+		search(smNum + 1, lgNum);
+	}
+	search(x, y);
+	// return results
+	return results;
 };
+
+// console.log(range(2, 11));
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -77,6 +101,7 @@ var range = function(x, y) {
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
 };
+// console.log(exponent(4, 3));
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
