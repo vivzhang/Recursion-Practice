@@ -100,6 +100,40 @@ var range = function(x, y) {
 // Example:  exponent(4,3);  // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+	// i: 2 #s, 1 base, 1 exp
+	// o: a #
+	// c: exp has to be positive
+	// e: if base is 0, return 0
+
+	// create variable counter = 0;
+	var counter = 1;
+	var result = 1;
+	if (base === 0) {
+		return 0;
+	}
+	if (exp === 0) {
+		return 1;
+	}
+	if (exp < 0) {
+		return;
+	}
+	// create function search
+	var search = function(sampleBase) {
+		// check if counter is less than or equal to exp
+		if (counter <= exp) {
+		  // if so, mutiply sampleBase by sampleBase, assign result to result
+			result = result * sampleBase;
+			// console.log(result);
+		  // increase counter by 1
+			counter++;
+		} else {
+			return;
+		}
+		// call search again
+		search(sampleBase);
+	};
+	search(base);
+	return result;
 };
 // console.log(exponent(4, 3));
 
