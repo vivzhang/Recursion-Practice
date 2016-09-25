@@ -179,23 +179,31 @@ var reverse = function(string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
-  var array = string.split('');
-  var search = function(sampleArray) {
-    while(sampleArray.length > 1) {
-      if (sampleArray.splice(0, 1)[0] === sampleArray.splice(-1, 1)[0]) {
-        isPalidrome = true;
-      } else {
-        isPalidrome = false;
-      }
-      search(sampleArray);
-    }
+  // var array = string.split('');
+  // var search = function(sampleArray) {
+  //   while(sampleArray.length > 1) {
+  //     if (sampleArray.splice(0, 1)[0] === sampleArray.splice(-1, 1)[0]) {
+  //       isPalidrome = true;
+  //     } else {
+  //       isPalidrome = false;
+  //     }
+  //     search(sampleArray);
+  //   }
+  // }
+  // search(array);
+  // return isPalidrome;
+  if (string.length === 0) {
+    return true;
   }
-  search(array);
-  return isPalidrome;
+  if (string[0] === string[string.length - 1]) {
+    return palindrome(string.slice(1, -1));
+    // same as string.slice(1, string.length -1)
+  } else {
+    return false;
+  }
 };
-
-// console.log(palindrome('racecar'));
-// console.log(palindrome('hello'));
+console.log(palindrome('racecar'));
+console.log(palindrome('hello'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
