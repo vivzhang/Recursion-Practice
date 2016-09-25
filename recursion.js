@@ -223,7 +223,20 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+	// base case: if x - y < y
+	if ((x - y) < y) {
+		// return x - y
+		return x - y;
+	// otherwise
+	} else {
+		// return the result of calling modulo with ((x - y), y);
+		return modulo(x - y, y);
+	}
 };
+
+// console.log(modulo(5,2));
+// console.log(modulo(17,5));
+// console.log(modulo(24,6));
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
