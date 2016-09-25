@@ -146,6 +146,7 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+	/*
 	var array = string.split('');
 	var reversedArray = [];
 	// make a helper function reverse that take an array
@@ -163,6 +164,14 @@ var reverse = function(string) {
 	reverse(array);
 	// return reversedArray
 	return reversedArray.join('');
+	*/
+
+	// better solution, w/o helper function
+	if (string === "") {
+    return "";
+  } else {
+    return reverse(string.substr(1)) + string.charAt(0);
+  }
 };
 
 console.log(reverse('hello world'));
