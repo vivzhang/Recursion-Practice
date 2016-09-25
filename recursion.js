@@ -168,17 +168,20 @@ var reverse = function(string) {
 	*/
 
 	// better solution, w/o helper function
-	if (string === "") {
-    return "";
-  } else {
-    return reverse(string.substr(1)) + string.charAt(0);
-  }
+	// make a base case, if string's length is 0
+	if (!string.length) {
+		// return empty string
+		return '';
+	}
+	// return last element in string, and then add recursive call to the string except the last one
+	return string[string.length - 1] + reverse(string.substring(0, string.length - 1));
 };
 
 // console.log(reverse('hello world'));
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+	// solution with a helper function, not good
   // var array = string.split('');
   // var search = function(sampleArray) {
   //   while(sampleArray.length > 1) {
@@ -202,8 +205,8 @@ var palindrome = function(string) {
     return false;
   }
 };
-console.log(palindrome('racecar'));
-console.log(palindrome('hello'));
+// console.log(palindrome('racecar'));
+// console.log(palindrome('hello'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
