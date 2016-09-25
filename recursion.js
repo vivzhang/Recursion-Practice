@@ -241,7 +241,27 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 var multiply = function(x, y) {
+	// note: y is how many times x needs to add to itself
+
+	// made a helper function, because wanted to reserve original x value
+	// create a veriable baseX, asign to x
+	var baseX = x;
+	// create a helper function search
+	var search = function(sampleX, sampleY) {
+		// base case: if sampleY = 0
+		if (sampleY === 1) {
+			// return sampleX
+			return sampleX;
+		} else {
+			// call search with sampleX + baseX, sampleY - 1
+			return search(sampleX + baseX, sampleY - 1);
+		}
+	}
+	return search(x, y);
 };
+
+// console.log(multiply(5, 3));
+
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
