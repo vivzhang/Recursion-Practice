@@ -195,18 +195,27 @@ var palindrome = function(string) {
   // }
   // search(array);
   // return isPalidrome;
+
+  // base case: if string length is 0
   if (string.length === 0) {
-    return true;
+  	// return true
+  	return true;
   }
-  if (string[0] === string[string.length - 1]) {
-    return palindrome(string.slice(1, -1));
-    // same as string.slice(1, string.length -1)
+  // conver string to all alphabetical letters with no space
+  string = string.match(/[A-Z]/gi).join('').toLowerCase();
+  // if string[0] is not equal to last element in string
+  if (string[0] !== string[string.length - 1]) {
+  	// return false
+  	return false;
+  // otherwise
   } else {
-    return false;
+  	// call palindrome again with string without the first and last element
+  	return palindrome(string.slice(1, -1));
   }
 };
 // console.log(palindrome('racecar'));
-// console.log(palindrome('hello'));
+// console.log(palindrome('race321@@car'));
+// console.log(palindrome('Hello$World#'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
