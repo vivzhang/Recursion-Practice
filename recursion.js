@@ -429,3 +429,24 @@ var binarySearch = function(array, target, min, max) {
 // Sample output: [5,7,23,32,34,62]
 var mergeSort = function(array) {
 };
+
+// ********** added by Viv **********
+// 39. Write a function that recursively prints the right half of a string
+var right = function(str){
+  var length = str.length;
+  // Helper function
+  var help = function(index){
+    // Recursive Case: Print right half
+    if(index < length) {
+        // Prints characters from index until the end of the array
+        console.log(str.substring(index, length));
+        // Recursive Call: call help on right half
+        help(Math.ceil(length - (length - index)/2));
+    }
+      // Base Case: Do Nothing
+  }
+  help(0);
+}
+
+var word = "question";
+right(word);
