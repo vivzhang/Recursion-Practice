@@ -282,6 +282,12 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  // create a veriable result assign to true
+  // if str1 and str 2 length is different, reassign result to false
+  // check if str1's length is 0, if so
+    // return result
+  // loop thru str1
+    // call
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
