@@ -282,13 +282,12 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
-  // create a veriable result assign to true
-  // if str1 and str 2 length is different, reassign result to false
-  // check if str1's length is 0, if so
-    // return result
-  // loop thru str1
-    // call
+
 };
+
+console.log(compareStr('house', 'houses')); // false
+console.log(compareStr('', '')); // true
+console.log(compareStr('tometo', 'tomato')); // false
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
@@ -350,8 +349,28 @@ var countValuesInObj = function(obj, value) {
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
-var replaceKeysInObj = function(obj, key, newKey) {
+var replaceKeysInObj = function(obj, targetKey, newKey) {
+  // if obj's key is the same as the targetKey
+  if (obj.hasOwnProperty(targetKey)) {
+    // reassign key to newKey
+    obj[newKey] = obj[targetKey];
+    delete obj[targetKey];
+  }
+  // loop thru obj
+  for (var key in obj) {
+    // if obj[key] is an object
+    if (typeof(obj[key]) === 'object') {
+      // call replaceKeysInObj with obj[key]
+      replaceKeysInObj(obj[key], targetKey, newKey); // make sure to call with the correct arguments
+    }
+  }
+  // return the obj
+  return obj;
 };
+
+var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
+
+// console.log(replaceKeysInObj(testobj, 'e', 'viv'));
 
 // 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
 // number is the sum of the previous two.
