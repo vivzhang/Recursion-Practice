@@ -321,7 +321,25 @@ var rMap = function(array, callback) {
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+  var counter = 0;
+  var search = function(obj) {
+    for (var samplekey in obj) {
+      if(samplekey === key) {
+        counter++;
+      }
+      if (typeof(obj[samplekey]) === 'object') {
+        search(obj[samplekey]);
+      }
+    }
+  }
+  search(obj);
+  return counter;
 };
+
+var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}}, 'y':'e'};
+
+// console.log(countKeysInObj(testobj, 'e')); // 2
+
 
 // 22. Write a function that counts the number of times a value occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
@@ -445,7 +463,7 @@ var right = function(str){
     // Recursive Case: Print right half
     if(index < length) {
         // Prints characters from index until the end of the array
-        console.log(str.substring(index, length));
+        // console.log(str.substring(index, length));
         // Recursive Call: call help on right half
         help(Math.ceil(length - (length - index)/2));
     }
