@@ -321,8 +321,16 @@ var createArray = function(str){
 // console.log(createArray('abcdefg'));
 
 // 17. Reverse the order of an array
-var reverseArr = function (array) {
+var reverseArr = function(array) {
+  // if
+  // take array's last element, add to the beginning of the array
+  //
 };
+var array = [1, 2, 3, 4, 5];
+array.splice(0, 0, array[array.length - 1]);
+console.log(array);
+
+// console.log(reverseArr([1, 2, 3, 4, 5]));
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
