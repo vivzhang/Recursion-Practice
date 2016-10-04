@@ -298,7 +298,27 @@ var compareStr = function(str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str){
+  // change str to lower case
+  str = str.toLowerCase();
+  // create an alpha variable that's an array contains all 26 alphabets
+  var alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  // create an empty array call results
+  var results = [];
+  var search = function(string) {
+    // if str.length === 0
+    if (string.length === 0) {
+      // return results
+      return;
+    }
+    // apply indexOf with alpha and first letter in str, push the result to results
+    results.push(alpha.indexOf(string.charAt(0)));
+    // call createArray with the str from index 1 to the end
+    search(string.slice(1));
+  }
+  search(str);
+  return results;
 };
+// console.log(createArray('abcdefg'));
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
