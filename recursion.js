@@ -529,23 +529,23 @@ var word = "question";
 right(word);
 
 
-// 40. Write a function that shuffles the array
+// 40. Write a function that shuffles the array, do not modify the original array
 
 var shuffle = function(array) {
-  var arg = Array.prototype.slice.call(array);
+  var arr = Array.prototype.slice.call(array);
   var results = [];
-  var search = function(arr) {
-    if (arr.length === 0) {
-      return results;
-    }
-    var random = arr[Math.floor(arr.length * Math.random())];
-    results.push(random);
-    var index = arr.indexOf(random);
-    arr.splice(index, 1);
-    search(arr);
-  }
-  search(arg);
-  return results;
+  // var search = function(arr) {
+  //   if (arr.length === 0) {
+  //     return results;
+  //   }
+  //   var random = arr[Math.floor(arr.length * Math.random())];
+  //   results.push(random);
+  //   var index = arr.indexOf(random);
+  //   arr.splice(index, 1);
+  //   search(arr);
+  // }
+  // search(arg);
+  // return results;
 
   /* non-recursive solution
   var arr = Array.prototype.slice.call(array);
@@ -559,4 +559,4 @@ var shuffle = function(array) {
   */
 }
 
-// console.log(shuffle([1,2,3,4,5,6]));
+console.log(shuffle([1,2,3,4,5,6]));
