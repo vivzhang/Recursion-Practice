@@ -322,15 +322,27 @@ var createArray = function(str){
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
-  // if
-  // take array's last element, add to the beginning of the array
-  //
+  // create empty array called results
+  var results = [];
+  // create search function, take a sampleArray as para
+  var search = function(sampleArray) {
+    // base case: if SampleArray.length is 0
+    if (!sampleArray.length) {
+      // return
+      return;
+    }
+    // call pop with sampleArray, push result to results
+    results.push(sampleArray.pop());
+    // call search with sampleArray
+    search(sampleArray)
+  }
+  // call search with array
+  search(array);
+  // return results
+  return results;
 };
-var array = [1, 2, 3, 4, 5];
-array.splice(0, 0, array[array.length - 1]);
-// console.log(array);
-
-// console.log(reverseArr([1, 2, 3, 4, 5]));
+var test = reverseArr([1, 2, 3, 4, 5, 6, 7, 8]);
+// console.log(test);
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
