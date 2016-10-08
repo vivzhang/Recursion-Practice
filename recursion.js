@@ -551,7 +551,7 @@ var shuffle = function(array) {
   var arr = Array.prototype.slice.call(array);
   var randomIndex = Math.floor(Math.random() * arr.length);
   for (var i = 0; i , i < arr.length; i++) {
-    temp = arr[i];
+    var temp = arr[i];
     arr[i] = arr[randomIndex];
     arr[randomIndex] = temp;
   }
