@@ -348,7 +348,7 @@ var reverseArr = function(array) {
     // return empty array
     return [];
   }
-  return [array[array.length -1]].concat(reverseArr(array.splice(0, array.length - 1)));
+  return [array[array.length -1]].concat(reverseArr(array.slice(0, array.length - 1)));
 };
 var test = reverseArr([1, 2, 3, 4, 5, 6, 7, 8]);
 // console.log(test);
