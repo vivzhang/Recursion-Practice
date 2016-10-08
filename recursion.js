@@ -322,6 +322,7 @@ var createArray = function(str){
 
 // 17. Reverse the order of an array
 var reverseArr = function(array) {
+  /* with helper function
   // create empty array called results
   var results = [];
   // create search function, take a sampleArray as para
@@ -340,6 +341,15 @@ var reverseArr = function(array) {
   search(array);
   // return results
   return results;
+  */
+  // w/o helper function
+  // base case: if array length is 0
+  if (!array.length) {
+    // return empty array
+    return [];
+  }
+  return [array[array.length -1]].concat(reverseArr(array.splice(0, array.length - 1)));
+  // reverseArr(array)
 };
 var test = reverseArr([1, 2, 3, 4, 5, 6, 7, 8]);
 // console.log(test);
