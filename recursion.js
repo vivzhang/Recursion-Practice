@@ -328,7 +328,7 @@ var reverseArr = function(array) {
 };
 var array = [1, 2, 3, 4, 5];
 array.splice(0, 0, array[array.length - 1]);
-console.log(array);
+// console.log(array);
 
 // console.log(reverseArr([1, 2, 3, 4, 5]));
 
@@ -336,7 +336,27 @@ console.log(array);
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  // create empty array called results
+  var results = [];
+  // create search function
+  var search = function(sampleValue, sampleLength) {
+    // base case: if no sampleLength
+    if (!sampleLength) {
+      // return
+      return;
+    }
+    // push sampleValue to results
+    results.push(sampleValue);
+    // call search with sampleValue and length - 1
+    search(sampleValue, sampleLength - 1);
+  }
+  // call search with value and length
+  search(value, length);
+  // return results
+  return results;
 };
+
+// console.log(buildList(7, 3));
 
 // 19. Count the occurence of a value inside a list.
 // countOccurrence([2,7,4,4,1,4], 4) // 3
@@ -559,4 +579,4 @@ var shuffle = function(array) {
   */
 }
 
-console.log(shuffle([1,2,3,4,5,6]));
+// console.log(shuffle([1,2,3,4,5,6]));
