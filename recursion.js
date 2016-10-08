@@ -349,7 +349,6 @@ var reverseArr = function(array) {
     return [];
   }
   return [array[array.length -1]].concat(reverseArr(array.splice(0, array.length - 1)));
-  // reverseArr(array)
 };
 var test = reverseArr([1, 2, 3, 4, 5, 6, 7, 8]);
 // console.log(test);
@@ -384,7 +383,21 @@ var buildList = function(value, length) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function(array, value) {
+  var counter = 0;
+  var search = function(array) {
+    if (!array.length) {
+      return;
+    }
+    if (array[0] === value) {
+      counter++;
+    }
+    search(array.slice(1));
+  }
+  search(array);
+  return counter;
 };
+var test = countOccurrence([2,'banana',4,4,1,'banana'], 'banana');
+console.log(test);
 
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
