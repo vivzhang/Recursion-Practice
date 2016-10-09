@@ -522,7 +522,25 @@ var test = capitalizeFirst(['car', 'poop', 'banana']);
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+  // loop thru obj
+  for (var key in obj) {
+    // if obj at key is odd
+    if (obj[key] % 2 === 0) {
+      // return 0
+      return obj[key] + nestedEvenSum(obj[key]);
+    }
+  }
+  // return obj[key] plus result of calling nestedEvenSum with obj[key]
 };
+var obj1 = {
+  a: 2,
+  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+  c: {c: {c: 2}, cc: 'ball', ccc: 5},
+  d: 1,
+  e: {e: {e: 2}, ee: 'car'}
+};
+var test = nestedEvenSum(obj1); // 10
+// console.log(test);
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
