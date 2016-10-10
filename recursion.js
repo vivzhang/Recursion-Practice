@@ -562,8 +562,11 @@ var test = nestedEvenSum(obj1); // 10
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-var flatten = function(arrays) {
+var flatten = function(nestedArray) {
 };
+
+var test = flatten([1, 2, [[[3, [2]]], 1], [4], 5]);
+// console.log(test);
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
@@ -662,7 +665,7 @@ var shuffle = function(array) {
   // search(arg);
   // return results;
 
-  /* non-recursive solution
+  // non-recursive solution
   var arr = Array.prototype.slice.call(array);
   var randomIndex = Math.floor(Math.random() * arr.length);
   for (var i = 0; i , i < arr.length; i++) {
@@ -671,37 +674,9 @@ var shuffle = function(array) {
     arr[randomIndex] = temp;
   }
   return arr;
-  */
 }
 
 // console.log(shuffle([1,2,3,4,5,6]));
-
-
-// 41. Takes a multidimensional array and converts it to a one-dimensional array.
-// The new array should contain all elements of the multidimensional array.
-var flatten = function(nestedArray) {
-  var results = [];
-  // create search function that takes an array as para
-  var search = function(array) {
-    // loop thru array
-    for (var i = 0; i < array.length; i++) {
-      // if array[i] is not an array
-      if (!Array.isArray(array[i])) {
-        // push array[i] to results
-        results.push(array[i]);
-      }
-      // call search with array[i]
-      search(array[i]);
-    }
-  }
-  // call search with nestedArray
-  search(nestedArray);
-  // return results
-  return results;
-};
-
-var test = flatten([1, 2, [[[3, [2]]], 1], [4], 5]);
-// console.log(test);
 
 
 
