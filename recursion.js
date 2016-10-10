@@ -522,15 +522,33 @@ var test = capitalizeFirst(['car', 'poop', 'banana']);
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
-  // loop thru obj
-  for (var key in obj) {
-    // if obj at key is odd
-    if (obj[key] % 2 === 0) {
-      // return 0
-      return obj[key] + nestedEvenSum(obj[key]);
+  // create a counter variable 0
+  var counter = 0;
+  // create traverse function, take an obj as para
+  var traverse = function(obj) {
+    // base case: if obj is not an obj
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
+      // return
+      return;
+    }
+    // if obj is object
+    if (typeof obj === 'object') {
+      // loop thru obj
+      for (var key in obj) {
+        // if property value is even
+        if (obj[key] % 2 === 0) {
+          // add counter by obj[key]
+          counter = counter + obj[key];
+        }
+        // call traverse with property value
+        traverse(obj[key]);
+      }
     }
   }
-  // return obj[key] plus result of calling nestedEvenSum with obj[key]
+  // call traverse with obj
+  traverse(obj);
+  // return counter
+  return counter;
 };
 var obj1 = {
   a: 2,
@@ -657,3 +675,9 @@ var shuffle = function(array) {
 }
 
 // console.log(shuffle([1,2,3,4,5,6]));
+
+
+
+
+
+
