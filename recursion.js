@@ -563,6 +563,24 @@ var test = nestedEvenSum(obj1); // 10
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(nestedArray) {
+  var results = [];
+  // create search function that takes an array as para
+  var search = function(array) {
+    // loop thru array
+    for (var i = 0; i < array.length; i++) {
+      // if array[i] is not an array
+      if (!Array.isArray(array[i])) {
+        // push array[i] to results
+        results.push(array[i]);
+      }
+      // call search with array[i]
+      search(array[i]);
+    }
+  }
+  // call search with nestedArray
+  search(nestedArray);
+  // return results
+  return results;
 };
 
 var test = flatten([1, 2, [[[3, [2]]], 1], [4], 5]);
