@@ -618,21 +618,18 @@ var test = letterTally('potato', {});
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
-  // base case: if list's length is 0
+  // if list's length is 0
   if (!list.length) {
     // return []
     return [];
   }
-  // if list[1] is the same as list[0]
+  // if list at index 1 is the same as list as index 0
   if (list[1] === list[0]) {
     // use splice to take out list[1]
     list.splice(1, 1);
   }
-  // call compress with list from index 1 to end
-  compress(list.slice(1));
-  // return list
-  console.log(list)
-  return list;
+  // return [list at index[0]].concat(compress(list.slice(1)));
+  return [list[0]].concat(compress(list.slice(1)));
 };
 var test = compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]);
 // console.log(test);
